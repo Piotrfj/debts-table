@@ -11,6 +11,10 @@
     text-align: left;
     padding: 10px 8px;
     word-break: break-word;
+
+    &:nth-child(3), &:nth-child(4) {
+      text-align: right;
+    }
   }
 
   thead {
