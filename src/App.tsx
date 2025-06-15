@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css';
+import styles from './App.module.scss';
+import { Header } from './components/Header/Header';
+import { DebtsTable } from './components/DebtsTable/DebtsTable';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+      <div className={styles.app}>
+        <Header />
+        <DebtsTable />
+      </div>
   );
 }
 

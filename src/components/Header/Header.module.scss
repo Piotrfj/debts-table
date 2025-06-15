@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  &__input {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  &__button {
+    padding: 10px 14px;
+    background-color: #e60000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c70000;
+    }
+  }
+
+  // Tablet & up
+  @media (min-width: 768px) {
+    flex-direction: row;
+
+    &__input {
+      flex: 1;
+    }
+
+    &__button {
+      width: auto;
+    }
+  }
+}

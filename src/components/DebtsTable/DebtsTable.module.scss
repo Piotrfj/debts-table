@@ -1,0 +1,30 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  &__row {
+    border-bottom: 1px solid #ddd;
+  }
+
+  &__cell {
+    text-align: left;
+    padding: 10px 8px;
+    word-break: break-word;
+  }
+
+  thead {
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 1200px) {
+    &__cell {
+      padding: 16px 12px;
+    }
+  }
+}
