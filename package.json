@@ -7,11 +7,10 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "axios": "^1.10.0",
+    "axios": "^0.27.2",
     "classnames": "^2.5.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -46,13 +45,16 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.3.0",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-react": "^7.37.5",
+    "jest": "^30.0.0",
     "prettier": "^3.5.3",
     "stylelint": "^16.20.0",
-    "stylelint-config-standard-scss": "^15.0.1"
+    "stylelint-config-standard-scss": "^15.0.1",
+    "ts-jest": "^29.4.0"
   }
 }
