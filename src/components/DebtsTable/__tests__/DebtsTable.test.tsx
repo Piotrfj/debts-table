@@ -1,12 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { DebtsTable } from '../DebtsTable';
-import { useDebts } from '../../../hooks/useDebts';
 import { Debt } from '../../../types/Debt';
-
-jest.mock('../../../hooks/useDebts');
-
-const mockedUseDebts = useDebts as jest.MockedFunction<typeof useDebts>;
 
 const mockDebts: Debt[] = [
     {
@@ -22,15 +17,9 @@ const mockDebts: Debt[] = [
     },
 ];
 
-describe('DebtsTable (with mocked useDebts)', () => {
-    it('renders data from hook', () => {
-        mockedUseDebts.mockReturnValue({
-            debts: mockDebts,
-            loading: false,
-            error: null,
-        });
-
-        render(<DebtsTable />);
+describe('DebtsTable (with props)', () => {
+    it('renders debt data correctly', () => {
+        render(<DebtsTable debts={mockDebts} loading={false} error={null} />);
 
         expect(screen.getByText('Test Dłużnik')).toBeInTheDocument();
         expect(screen.getByText('1234567890')).toBeInTheDocument();
@@ -38,25 +27,13 @@ describe('DebtsTable (with mocked useDebts)', () => {
         expect(screen.getByText('01-01-2024')).toBeInTheDocument();
     });
 
-    it('renders loader if loading is true', () => {
-        mockedUseDebts.mockReturnValue({
-            debts: [],
-            loading: true,
-            error: null,
-        });
-
-        render(<DebtsTable />);
+    it('renders loader when loading is true', () => {
+        render(<DebtsTable debts={[]} loading={true} error={null} />);
         expect(screen.getByText(/loading/i)).toBeInTheDocument();
     });
 
-    it('renders error if error is present', () => {
-        mockedUseDebts.mockReturnValue({
-            debts: [],
-            loading: false,
-            error: 'Something went wrong',
-        });
-
-        render(<DebtsTable />);
+    it('renders error when error is present', () => {
+        render(<DebtsTable debts={[]} loading={false} error="Something went wrong" />);
         expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
     });
 });

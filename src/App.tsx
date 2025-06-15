@@ -1,15 +1,13 @@
 import React from 'react';
 import styles from './App.module.scss';
-import { Header } from './components/Header/Header';
-import { DebtsTable } from './components/DebtsTable/DebtsTable';
+import { DebtsScreen } from './features/debts/DebtsScreen';
 
 function App() {
-  return (
-      <div className={styles.app}>
-        <Header />
-        <DebtsTable />
-      </div>
-  );
+    return (
+        <div className={styles.app}>
+            <DebtsScreen />
+        </div>
+    );
 }
 
 export default App;

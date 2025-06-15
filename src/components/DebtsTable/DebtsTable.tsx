@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import styles from './DebtsTable.module.scss';
-import { useDebts } from '../../hooks/useDebts';
+import { Debt } from '../../types/Debt';
 import { Loader } from '../Loader/Loader';
 import { formatDate } from '../../utils/formatDate';
-import { SortConfig } from "../../types/Sorting";
-import { sortDebts } from "../../utils/sortDebts";
+import { SortConfig } from '../../types/Sorting';
+import { sortDebts } from '../../utils/sortDebts';
 
-export const DebtsTable = () => {
-    const {debts, loading, error} = useDebts();
+interface DebtsTableProps {
+    debts: Debt[];
+    loading: boolean;
+    error: string | null;
+}
 
+export const DebtsTable: React.FC<DebtsTableProps> = ({ debts, loading, error }) => {
     const [sortConfig, setSortConfig] = useState<SortConfig>({
         key: 'Name',
         direction: 'asc',
     });
-    const sortedDebts = sortDebts(debts, sortConfig);
 
     const handleSort = (key: SortConfig['key']) => {
         setSortConfig((prev) => ({
@@ -22,9 +25,9 @@ export const DebtsTable = () => {
         }));
     };
 
+    const sortedDebts = sortDebts(debts, sortConfig);
 
-
-    if (loading) return <Loader/>;
+    if (loading) return <Loader />;
     if (error) return <div>{error}</div>;
 
     return (
