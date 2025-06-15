@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './DebtsTable.module.scss';
 import { useDebts } from '../../hooks/useDebts';
 import { Loader } from '../Loader/Loader';
 import { formatDate } from '../../utils/formatDate';
+import { SortConfig } from "../../types/Sorting";
+import { sortDebts } from "../../utils/sortDebts";
 
 export const DebtsTable = () => {
     const {debts, loading, error} = useDebts();
+
+    const [sortConfig, setSortConfig] = useState<SortConfig>({
+        key: 'Name',
+        direction: 'asc',
+    });
+    const sortedDebts = sortDebts(debts, sortConfig);
+
+    const handleSort = (key: SortConfig['key']) => {
+        setSortConfig((prev) => ({
+            key,
+            direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+        }));
+    };
+
+
 
     if (loading) return <Loader/>;
     if (error) return <div>{error}</div>;
@@ -14,14 +31,22 @@ export const DebtsTable = () => {
         <table className={styles.table}>
             <thead>
             <tr className={styles.table__row}>
-                <th className={styles.table__cell}>Nazwa dłużnika</th>
-                <th className={styles.table__cell}>NIP</th>
-                <th className={styles.table__cell}>Kwota zadłużenia</th>
-                <th className={styles.table__cell}>Data publikacji</th>
+                <th className={styles.table__header} onClick={() => handleSort('Name')}>
+                    DŁUŻNIK {sortConfig.key === 'Name' && (sortConfig.direction === 'asc' ? '▲' : '▼')}
+                </th>
+                <th className={styles.table__header} onClick={() => handleSort('NIP')}>
+                    NIP {sortConfig.key === 'NIP' && (sortConfig.direction === 'asc' ? '▲' : '▼')}
+                </th>
+                <th className={styles.table__header} onClick={() => handleSort('Value')}>
+                    KWOTA ZADŁUŻENIA {sortConfig.key === 'Value' && (sortConfig.direction === 'asc' ? '▲' : '▼')}
+                </th>
+                <th className={styles.table__header} onClick={() => handleSort('Date')}>
+                    DATA POWSTANIA ZOBOWIĄZANIA {sortConfig.key === 'Date' && (sortConfig.direction === 'asc' ? '▲' : '▼')}
+                </th>
             </tr>
             </thead>
             <tbody>
-            {debts.map((debt) => (
+            {sortedDebts.map((debt) => (
                 <tr key={debt.Id} className={styles.table__row}>
                     <td className={styles.table__cell}>{debt.Name}</td>
                     <td className={styles.table__cell}>{debt.NIP}</td>
