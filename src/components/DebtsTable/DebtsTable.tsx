@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './DebtsTable.module.scss';
 import { Debt } from '../../types/Debt';
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
+import Error from '../Error/Error';
 import { SortConfig, SortDirection } from '../../types/Sorting';
 import { sortDebts } from '../../utils/sortDebts';
 import { useMediaQuery } from 'react-responsive';
@@ -32,7 +33,7 @@ const DebtsTable: React.FC<DebtsTableProps> = ({ debts, loading, error }) => {
     const sortedDebts = sortDebts(debts, sortConfig);
 
     if (loading) return <Loader />;
-    if (error) return <div>{error}</div>;
+    if (error) return <Error message={error} />;
 
     const commonProps = { debts: sortedDebts, sortConfig, handleSort };
 
