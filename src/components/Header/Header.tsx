@@ -28,15 +28,15 @@ export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
 
     return (
         <div className={styles.header}>
+            <span className={styles.header__label}>PODAJ NIP LUB NAZWĘ DŁUŻNIKA</span>
             <input
                 className={styles.header__input}
                 type="text"
-                placeholder="PODAJ NIP LUB NAZWĘ DŁUŻNIKA"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
             <button className={styles['header__button']} onClick={handleClick}>
-                Szukaj
+                SZUKAJ
             </button>
         </div>
     );

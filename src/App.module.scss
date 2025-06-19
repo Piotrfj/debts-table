@@ -1,17 +1,1 @@
-.app {
-    padding: 16px;
-    font-family: 'Arial', sans-serif;
 
-    @media (min-width: 768px) {
-        padding: 32px;
-    }
-
-    @media (min-width: 1024px) {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    @media (min-width: 1440px) {
-        max-width: 1200px;
-    }
-}
