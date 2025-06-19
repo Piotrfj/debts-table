@@ -5,7 +5,7 @@ interface HeaderProps {
     onSearch: (query: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState(query);
 
@@ -41,3 +41,5 @@ export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
         </div>
     );
 };
+
+export default Header;

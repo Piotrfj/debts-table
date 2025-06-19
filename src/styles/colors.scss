@@ -1,11 +1,17 @@
-$button-bg-color: #e60000;
+$color-primary: #002f5f;
+$color-secondary: #e60000;
+$grey: #bbb;
+$light-grey: #e6e6e6;
+
+
+$button-bg-color: $color-secondary;
 $button-text-color: #ffffff;
-$button-bg-hover-color: #c70000;
+$button-bg-hover-color: darken($color-secondary, 10%);
 
-$header-text-color: #ccc;
-$header-bg-color: #002f5f;
+$header-text-color: $grey;
+$header-bg-color: $color-primary;
 
-$table-header-bg-color: #f5f7fa;
-$table-cell-text: #002f5f;
+$table-header-text: $grey;
+$table-cell-text: $color-primary;
 
-$border-color: #e6e6e6;
+$border-color: $light-grey;

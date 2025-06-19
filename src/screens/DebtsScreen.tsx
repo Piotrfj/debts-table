@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Header } from '../components/Header/Header';
-import { DebtsTable } from '../components/DebtsTable/DebtsTable';
+import Header from '../components/Header/Header';
+import DebtsTable from '../components/DebtsTable/DebtsTable';
 import { useDebts } from '../hooks/useDebts';
 
 export const DebtsScreen = () => {
