@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { useDebts } from '../useDebts';
+import { useDebts } from '../../hooks/useDebts';
 import { getTopDebts, getFilteredDebts } from '../../api/debts';
 import { Debt } from '../../types/Debt';
 

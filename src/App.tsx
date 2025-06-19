@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './App.module.scss';
-import { DebtsScreen } from './features/debts/DebtsScreen';
+import { DebtsScreen } from './screens/DebtsScreen';
 
 function App() {
     return (

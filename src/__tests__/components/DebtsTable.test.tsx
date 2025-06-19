@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { DebtsTable } from '../DebtsTable';
-import { Debt } from '../../../types/Debt';
+import { DebtsTable } from '../../components/DebtsTable/DebtsTable';
+import { Debt } from '../../types/Debt';
 
 const mockDebts: Debt[] = [
     {

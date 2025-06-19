@@ -1,4 +1,4 @@
-import { sortDebts } from '../sortDebts';
+import { sortDebts } from '../../utils/sortDebts';
 import { SortConfig } from '../../types/Sorting';
 import { Debt } from '../../types/Debt';
 

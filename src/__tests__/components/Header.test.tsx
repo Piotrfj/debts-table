@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { Header } from '../Header';
+import { Header } from '../../components/Header/Header';
 
 describe('Header', () => {
     it('calls onSearch after debounce delay when typing', async () => {

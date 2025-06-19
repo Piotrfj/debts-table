@@ -1,4 +1,4 @@
-import { formatDate } from '../formatDate';
+import { formatDate } from '../../utils/formatDate';
 
 describe('formatDate', () => {
     it('formats ISO string correctly with leading zeros', () => {
