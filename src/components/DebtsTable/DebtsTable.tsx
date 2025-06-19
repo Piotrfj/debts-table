@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import styles from './DebtsTable.module.scss';
 import { Debt } from '../../types/Debt';
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
-import { SortConfig, SortDirection } from '../../types/Sorting';
+import { SortConfig } from '../../types/Sorting';
 import { sortDebts } from '../../utils/sortDebts';
 import { useMediaQuery } from 'react-responsive';
 import DebtsTableDesktop from './DebtsTableDesktop';
 import DebtsTableMobile from './DebtsTableMobile';
+import Empty from "../Empty/Empty";
 
 interface DebtsTableProps {
     debts: Debt[];
@@ -34,6 +34,7 @@ const DebtsTable: React.FC<DebtsTableProps> = ({ debts, loading, error }) => {
 
     if (loading) return <Loader />;
     if (error) return <Error message={error} />;
+    if (sortedDebts.length === 0) return <Empty />;
 
     const commonProps = { debts: sortedDebts, sortConfig, handleSort };
 

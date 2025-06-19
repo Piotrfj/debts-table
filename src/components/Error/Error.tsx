@@ -9,7 +9,7 @@ const Error: React.FC<ErrorProps> = ({ message }) => {
     return (
         <div className={styles.error}>
             <span className={styles.error__icon}>⚠️</span>
-            <span className={styles.error__message}>{message}</span>
+            <span>{message}</span>
         </div>
     );
 };
