@@ -21,7 +21,7 @@ export const useDebts = () => {
     }, []);
 
     const searchDebts = useCallback(async (phrase: string) => {
-        if (!phrase.trim()) {
+        if (phrase.trim().length < 3) {
             return loadTopDebts();
         }
 

@@ -5,7 +5,7 @@ interface HeaderProps {
     onSearch: (query: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSearch }) => {
+const Header: React.FC<HeaderProps> = ({onSearch}) => {
     const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState(query);
 
@@ -18,7 +18,8 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     }, [query]);
 
     useEffect(() => {
-        if (debouncedQuery.trim().length < 3) return;
+        const trimmedQueryLength = debouncedQuery.trim().length;
+        if (trimmedQueryLength > 0 && trimmedQueryLength < 3) return;
         onSearch(debouncedQuery);
     }, [debouncedQuery, onSearch]);
 
