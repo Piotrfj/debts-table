@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const useDebouncedSearch = (
-    query: string,
     onSearch: (query: string) => void,
     delay = 400
 ) => {
+    const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState(query);
 
     useEffect(() => {
@@ -21,6 +21,8 @@ const useDebouncedSearch = (
             onSearch(trimmed);
         }
     }, [debouncedQuery, onSearch]);
+
+    return {query, setQuery};
 };
 
 export default useDebouncedSearch;

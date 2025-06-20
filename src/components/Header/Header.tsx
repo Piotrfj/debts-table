@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import useDebouncedSearch from '../../hooks/useDebouncedSearch';
 
@@ -7,9 +7,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onSearch }) => {
-    const [query, setQuery] = useState('');
-
-    useDebouncedSearch(query, onSearch);
+    const {query, setQuery} = useDebouncedSearch(onSearch);
 
     const handleClick = () => {
         onSearch(query);
