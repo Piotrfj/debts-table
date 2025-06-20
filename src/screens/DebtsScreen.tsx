@@ -3,7 +3,7 @@ import Header from '../components/Header/Header';
 import DebtsTable from '../components/DebtsTable/DebtsTable';
 import useDebts from '../hooks/useDebts';
 
-export const DebtsScreen = () => {
+const DebtsScreen = () => {
     const { debts, loading, error, loadTopDebts, searchDebts } = useDebts();
 
     useEffect(() => {
@@ -17,3 +17,5 @@ export const DebtsScreen = () => {
         </>
     );
 };
+
+export default DebtsScreen;

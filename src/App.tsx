@@ -1,5 +1,5 @@
 import React from 'react';
-import { DebtsScreen } from './screens/DebtsScreen';
+import DebtsScreen from './screens/DebtsScreen';
 
 function App() {
     return (
