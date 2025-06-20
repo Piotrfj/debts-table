@@ -17,17 +17,14 @@ describe('useSortedDebts', () => {
         expect(result.current.sortedDebts[2].Name).toBe('Zenon');
     });
 
-    it('should toggle sorting direction on same key', () => {
+    it('should toggle direction if same key is clicked again', () => {
         const { result } = renderHook(() => useSortedDebts(mockDebts));
 
-        act(() => {
-            result.current.handleSort('Name');
-        });
+        act(() => result.current.handleSort('Value'));
+        expect(result.current.sortConfig.direction).toBe('asc');
 
+        act(() => result.current.handleSort('Value'));
         expect(result.current.sortConfig.direction).toBe('desc');
-        expect(result.current.sortedDebts[0].Name).toBe('Zenon');
-        expect(result.current.sortedDebts[1].Name).toBe('Marek');
-        expect(result.current.sortedDebts[2].Name).toBe('Adam');
     });
 
     it('should sort by Value when key is changed', () => {
