@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { getTopDebts, getFilteredDebts } from '../api/debts';
 import { Debt } from '../types/Debt';
 
@@ -37,11 +37,7 @@ const useDebts = () => {
         }
     }, [loadTopDebts]);
 
-    useEffect(() => {
-        loadTopDebts();
-    }, [loadTopDebts]);
-
-    return { debts, loading, error, searchDebts };
+    return { debts, loading, error, loadTopDebts, searchDebts };
 };
 
 export default useDebts;

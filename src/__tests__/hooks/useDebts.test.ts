@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { useDebts } from '../../hooks/useDebts';
+import useDebts from '../../hooks/useDebts';
 import { getTopDebts, getFilteredDebts } from '../../api/debts';
 import { Debt } from '../../types/Debt';
 
@@ -11,7 +11,7 @@ const mockedGetFilteredDebts = getFilteredDebts as jest.MockedFunction<typeof ge
 const mockData: Debt[] = [
     {
         Id: '1',
-        Name: 'Kowalski',
+        Name: 'Jan Kowalski',
         NIP: '1234567890',
         Value: 1000,
         Date: '2024-01-01',
@@ -70,16 +70,19 @@ describe('useDebts', () => {
         expect(result.current.error).toBe(null);
     });
 
-    it('fallbacks to top debts when empty query is passed to searchDebts', async () => {
+    it('fallbacks to top debts when empty or shorter than 3 chars query is passed to searchDebts', async () => {
         mockedGetTopDebts.mockResolvedValueOnce(mockData);
 
         const { result } = renderHook(() => useDebts());
 
         await act(async () => {
             await result.current.searchDebts('');
+            await result.current.searchDebts('k');
+            await result.current.searchDebts('ko');
+            await result.current.searchDebts('kow');
         });
 
-        expect(mockedGetTopDebts).toHaveBeenCalled();
+        expect(mockedGetTopDebts).toHaveBeenCalledTimes(3);
     });
 
     it('handles error during filtered search', async () => {
