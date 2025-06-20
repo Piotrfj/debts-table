@@ -1,10 +1,11 @@
 @import 'src/styles/colors';
 @import 'src/styles/breakpoints';
+@import 'src/styles/typography';
 
 .mobileTable {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: $font-size-sm;
 
   .sortControls {
     display: flex;
@@ -27,7 +28,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.25rem;
+      font-size:  $font-size-lg;
       line-height: 1;
       color: $color-primary;
       transition: transform 0.2s ease;
@@ -48,7 +49,7 @@
     color: $table-cell-text;
     font-weight: bold;
 
-    @include for-size(tablet-portrait-up) {
+    @include for-size(xs) {
       display: grid;
       grid-template-columns: auto 1fr;
       grid-gap: .25rem .5rem;
@@ -64,7 +65,11 @@
 }
 
 .desktopTable {
-  padding: 0 3rem;
+  padding: 0 1rem;
+
+  @include for-size(md) {
+    padding: 0 4rem;
+  }
 
   @include for-size(lg) {
     padding: 0 6rem;
@@ -75,14 +80,14 @@
     border-collapse: collapse;
 
     &__row {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid $border-color;
     }
 
     &__header {
       padding: .75rem;
       text-align: left;
       font-weight: bold;
-      font-size: 12px;
+      font-size: $font-size-xs;
       color: $table-header-text;
       cursor: pointer;
 
@@ -123,7 +128,7 @@
 
     &__cell {
       text-align: left;
-      padding: .75rem;
+      padding: 1rem .75rem;
       color: $table-cell-text;
       font-weight: bold;
 

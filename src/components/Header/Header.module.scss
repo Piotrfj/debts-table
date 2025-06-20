@@ -1,5 +1,6 @@
 @import 'src/styles/colors';
 @import 'src/styles/breakpoints';
+@import 'src/styles/typography';
 
 .header {
   display: flex;
@@ -8,9 +9,13 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  @include for-size(tablet-up) {
-    padding: 2rem 3rem 3rem;
+  @include for-size(sm) {
+    padding: 2rem 1rem 3rem;
     justify-content: flex-start;
+  }
+
+  @include for-size(md) {
+    padding: 2rem 4rem 3rem;
   }
 
   @include for-size(lg) {
@@ -22,7 +27,7 @@
     color: $header-text-color;
     font-weight: bold;
     margin-bottom: .75rem;
-    font-size: 14px;
+    font-size: $font-size-sm;
   }
 
   &__input {
@@ -31,7 +36,7 @@
     border: none;
     flex-basis: 100%;
 
-    @include for-size(tablet-up) {
+    @include for-size(sm) {
       flex-basis: auto;
     }
   }
@@ -43,9 +48,9 @@
     border: none;
     cursor: pointer;
     margin-top: 1rem;
-    font-size: 14px;
+    font-size: $font-size-sm;
 
-    @include for-size(tablet-up) {
+    @include for-size(sm) {
       margin: 0;
     }
 
