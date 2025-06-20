@@ -1,34 +1,46 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { Header } from '../../components/Header/Header';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import Header from '../../components/Header/Header';
 
-describe('Header', () => {
-    it('calls onSearch after debounce delay when typing', async () => {
-        const onSearch = jest.fn();
-        render(<Header onSearch={onSearch} />);
+jest.useFakeTimers();
+const mockSearch = jest.fn();
 
-        const input = screen.getByPlaceholderText('PODAJ NIP LUB NAZWĘ DŁUŻNIKA');
+describe('Header component', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    })
 
-        fireEvent.change(input, { target: { value: 'Jan' } });
+    it('renders input and button', () => {
+        render(<Header onSearch={mockSearch} />);
 
-        // Debounce: fast typing should NOT call immediately
-        expect(onSearch).not.toHaveBeenCalled();
-
-        await waitFor(() => {
-            expect(onSearch).toHaveBeenCalledWith('Jan');
-        });
+        expect(screen.getByLabelText('PODAJ NIP LUB NAZWĘ DŁUŻNIKA')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'SZUKAJ' })).toBeInTheDocument();
     });
 
-    it('calls onSearch immediately on button click', () => {
-        const onSearch = jest.fn();
-        render(<Header onSearch={onSearch} />);
+    it('calls onSearch after debounce with trimmed query (length >= 3)', () => {
+        render(<Header onSearch={mockSearch} />);
 
-        const input = screen.getByPlaceholderText('PODAJ NIP LUB NAZWĘ DŁUŻNIKA');
-        const button = screen.getByRole('button', { name: 'Szukaj' });
+        const input = screen.getByLabelText('PODAJ NIP LUB NAZWĘ DŁUŻNIKA');
+        fireEvent.change(input, { target: { value: '   test   ' } });
 
-        fireEvent.change(input, { target: { value: 'Kowalski' } });
+        expect(mockSearch).not.toHaveBeenCalled();
+
+        act(() => {
+            jest.advanceTimersByTime(400);
+        });
+
+        expect(mockSearch).toHaveBeenCalledWith('test');
+    });
+
+    it('calls onSearch with trimmed value immediately on button click', () => {
+        render(<Header onSearch={mockSearch} />);
+
+        const input = screen.getByLabelText('PODAJ NIP LUB NAZWĘ DŁUŻNIKA');
+        const button = screen.getByRole('button', { name: 'SZUKAJ' });
+
+        fireEvent.change(input, { target: { value: '   manual  ' } });
         fireEvent.click(button);
 
-        expect(onSearch).toHaveBeenCalledWith('Kowalski');
+        expect(mockSearch).toHaveBeenCalledWith('manual');
     });
 });

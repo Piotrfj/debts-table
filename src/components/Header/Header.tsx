@@ -10,15 +10,16 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     const {query, setQuery} = useDebouncedSearch(onSearch);
 
     const handleClick = () => {
-        onSearch(query);
+        onSearch(query.trim());
     };
 
     return (
         <div className={styles.header}>
-            <span className={styles.header__label}>PODAJ NIP LUB NAZWĘ DŁUŻNIKA</span>
+            <label htmlFor='searchInput' className={styles.header__label}>PODAJ NIP LUB NAZWĘ DŁUŻNIKA</label>
             <input
                 className={styles.header__input}
                 type="text"
+                id='searchInput'
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
