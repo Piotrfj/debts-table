@@ -24,24 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "lint-staged": {
-    "src/**/*.{js,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write",
-      "npm test -- --findRelatedTests"
-    ],
-    "*.{json,css,scss,md}": [
-      "prettier --write"
-    ]
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -63,11 +46,8 @@
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-react": "^7.37.5",
-    "husky": "^9.1.7",
     "jest": "^30.0.0",
     "lint-staged": "^16.1.2",
-    "prettier": "^3.5.3",
-    "stylelint": "^16.20.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "ts-jest": "^29.4.0"
   }
