@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { Debt } from '../../types/Debt';
+import { useMediaQuery } from 'react-responsive';
+import useSortedDebts from '../../hooks/useSortedDebts';
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
-import { SortConfig } from '../../types/Sorting';
-import { sortDebts } from '../../utils/sortDebts';
-import { useMediaQuery } from 'react-responsive';
-import DebtsTableDesktop from './DebtsTableDesktop';
+import Empty from '../Empty/Empty';
 import DebtsTableMobile from './DebtsTableMobile';
-import Empty from "../Empty/Empty";
+import DebtsTableDesktop from './DebtsTableDesktop';
+import { Debt } from '../../types/Debt';
 
 interface DebtsTableProps {
     debts: Debt[];
@@ -17,20 +15,7 @@ interface DebtsTableProps {
 
 const DebtsTable: React.FC<DebtsTableProps> = ({ debts, loading, error }) => {
     const isMobile = useMediaQuery({ maxWidth: 767 });
-
-    const [sortConfig, setSortConfig] = useState<SortConfig>({
-        key: 'Name',
-        direction: 'asc',
-    });
-
-    const handleSort = (key: SortConfig['key']) => {
-        setSortConfig((prev) => ({
-            key,
-            direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
-        }));
-    };
-
-    const sortedDebts = sortDebts(debts, sortConfig);
+    const { sortedDebts, sortConfig, handleSort } = useSortedDebts(debts);
 
     if (loading) return <Loader />;
     if (error) return <Error message={error} />;

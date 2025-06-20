@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.scss';
+import useDebouncedSearch from '../../hooks/useDebouncedSearch';
 
 interface HeaderProps {
     onSearch: (query: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({onSearch}) => {
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
-    const [debouncedQuery, setDebouncedQuery] = useState(query);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setDebouncedQuery(query);
-        }, 400);
-
-        return () => clearTimeout(timeout);
-    }, [query]);
-
-    useEffect(() => {
-        const trimmedQueryLength = debouncedQuery.trim().length;
-        if (trimmedQueryLength > 0 && trimmedQueryLength < 3) return;
-        onSearch(debouncedQuery);
-    }, [debouncedQuery, onSearch]);
+    useDebouncedSearch(query, onSearch);
 
     const handleClick = () => {
         onSearch(query);
@@ -36,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({onSearch}) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <button className={styles['header__button']} onClick={handleClick}>
+            <button className={styles.header__button} onClick={handleClick}>
                 SZUKAJ
             </button>
         </div>

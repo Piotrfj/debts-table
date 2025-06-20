@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Empty.module.scss';
 
-
 const Empty: React.FC = () => {
     return (
         <div className={styles.empty}>
