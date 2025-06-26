@@ -25,7 +25,7 @@ npm test
 npm run build
 ```
 
-##  ▶️ Preview the build
+##  ▶️ Preview the build - in order for this to work installation (serve package) and build is required
 ```bash
 npm run preview
 ```
