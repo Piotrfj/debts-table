@@ -19,3 +19,13 @@ npm start
 ```bash
 npm test
 ```
+
+##  ▶️ Build Project
+```bash
+npm run build
+```
+
+##  ▶️ Preview the build
+```bash
+npm run preview
+```
