@@ -24,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preview": "serve build"
   },
   "browserslist": {
     "production": [
@@ -48,6 +49,7 @@
     "eslint-plugin-react": "^7.37.5",
     "jest": "^30.0.0",
     "lint-staged": "^16.1.2",
+    "serve": "^14.2.4",
     "stylelint-config-standard-scss": "^15.0.1",
     "ts-jest": "^29.4.0"
   }
